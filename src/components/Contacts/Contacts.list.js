@@ -1,8 +1,8 @@
 import { ListContacts } from './Contacts.styled';
 import { ContactsCard } from './Contacts.card';
 
-export const ContactsList = ({ filterContacts }) => (
+export const ContactsList = () => (
   <ListContacts>
-    <ContactsCard filterContacts={filterContacts} />
+    <ContactsCard />
   </ListContacts>
 );

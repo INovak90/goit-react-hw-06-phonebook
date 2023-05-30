@@ -1,6 +1,7 @@
 import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { addContact } from 'redux/contactSlice';
+import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import {
   ErrorMessage,
@@ -11,6 +12,7 @@ import {
 } from './Form.styled';
 
 export const ContactForm = () => {
+  const contactsArray = useSelector(state => state.contacts.items);
   const dispatch = useDispatch();
   const SignupSchema = Yup.object().shape({
     name: Yup.string().required(
@@ -29,7 +31,10 @@ export const ContactForm = () => {
       onSubmit={(values, actions) => {
         const { name, number } = values;
         dispatch(addContact(name, number));
-        actions.resetForm();
+        const find = contactsArray.find(contact => contact.name === name);
+        if (!find) {
+          actions.resetForm();
+        }
       }}
       validationSchema={SignupSchema}
     >

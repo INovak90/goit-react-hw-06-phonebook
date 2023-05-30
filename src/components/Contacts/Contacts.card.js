@@ -15,7 +15,7 @@ export const ContactsCard = () => {
       <ListItem key={id}>
         <p>{name}:</p>
         <p>{number}</p>
-        <Delete type="button" onClick={() => dispatch(deleteContacts())}>
+        <Delete type="button" onClick={() => dispatch(deleteContacts(id))}>
           Delete
         </Delete>
       </ListItem>
